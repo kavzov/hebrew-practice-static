@@ -23,11 +23,11 @@
     text-align: center;
 }
 #menu {
-    z-index:10;
-    position:absolute;
+    z-index: 10;
+    position: absolute;
     list-style-type: none;
-    padding:.8em 0 0 1em;
-    margin:0;
+    padding: .8em 0 0 1em;
+    margin: 0;
 }
 #menu li {
     font-size: .9em;
