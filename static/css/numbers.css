@@ -52,7 +52,6 @@
 #num-answ {
     display: none;
     margin-top:1em;
-    font-family: serif;
     font-size: 1.5em;
 }
 #num-answ-heb {
@@ -60,6 +59,7 @@
     color: #359;
 }
 #num-answ-rus {
+    font-family: serif;
     font-style: italic;
 }
 
