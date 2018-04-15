@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hebrew numbers</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="../static/css/numbers.css">
+</head>
+
+<body>
+
+<ul id="menu"><span id="menu-sign">&#9776;</span>
+    <span id="menu-puncts">
+        <li><a href="../alphabet">Алфавит</a></li>
+        <li><a href="index.html">Число</a></li>
+        <li><a href="random.html">Случ. число</a></li>
+    </span>
+</ul>
+<div id="min-max-input" class="form-row">
+    <div class="col-4"></div>
+    <div class="col text-right">
+        <input id="input-num" class="form-control" type="number" value="" autofocus>
+        <div style="font-size:.8em; color:#777; margin-bottom: -1em;">&gt;19999</div>
+    </div>
+    <div class="col-4"></div>
+</div>
+<div id="container">
+    <div id="num"></div>
+    <div style="margin-top:2em;"><input id="answ-btn" type="button" class="btn btn-primary" style="font-size:1.2em; width:5em; margin-top:0;" value="Перевод"></div>
+    <div id="num-answ">
+        <div id="num-answ-rus"></div>
+        <div id="num-answ-heb"></div>
+    </div>
+</div>
+
+<!-- js -->
+<script type="text/javascript" src="../static/js/numbers_base.js"></script>
+<script type="text/javascript" src="../static/js/index.js"></script>
+<script>
+    function showNum () {
+        var inputField = $('#input-num');
+        /* If empty field, set `0` */
+        inputField.val( inputField.val() === "" ? 0 : inputField.val() );
+        var num = inputField.val();
+        // remove lead `0`
+        if (num !== '0' && num[0] === '0') {
+            num = num.replace(/^0+/, '');
+            inputField.val(num);
+        }
+
+        $('#num-answ-rus').html(translateNumber(num, 'rus'));
+        $('#num-answ-heb').html(translateNumber(num, 'heb'));
+        $('#num-answ').show();
+    }
+    $('#input-num').on('change', function(e) {
+        var val = $('#input-num').val();
+        if (val < minNum) $('#input-num').val(minNum);
+        if (val > maxNum) $('#input-num').val(maxNum);
+    });
+    $('#answ-btn').on('click', function() { showNum(); });
+    $('#input-num').on('keypress', function(e) {
+        if(e.which == 13) {
+            showNum();
+        }
+    });
+</script>
+</body>
+</html>
