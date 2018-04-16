@@ -155,14 +155,3 @@ function outputNum() {
     /* hide answer */
     $('#num-answ').hide();
 }
-
-/* menu sign click */
-$('#menu-sign').on('click', function() {
-    $(this).next().toggle();
-});
-/* hide menu on click any place except menu */
-$('html').on('click', function(e) {
-    if ($(e.target).is('#menu-sign, #menu')) return;
-    if ($('#menu-sign').next().css('display') !== 'none')
-        $('#menu-sign').next().hide();
-});
