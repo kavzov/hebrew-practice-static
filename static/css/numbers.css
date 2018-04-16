@@ -15,6 +15,12 @@
     text-align: center;
 }
 
+#hebrew-letter {
+    line-height:1em;
+    margin-bottom:.2em;
+    font-family: Tinos;
+    font-size: 8em;
+}
 #input-num {
     font-size: 2em;
     margin-top: .6em !important;
@@ -35,7 +41,7 @@
     margin-top: -.1em;
     font-size: 6.75em;
 }
-#num-answ {
+#num-answ, #letter-answ {
     display: none;
     margin-top:1em;
     font-size: 1.5em;
@@ -44,7 +50,7 @@
     font-family: 'Tinos', serif;
     color: #359;
 }
-#num-answ-rus {
+#num-answ-rus, #answ-letter-rus {
     font-family: serif;
     font-style: italic;
 }
