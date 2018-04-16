@@ -16,29 +16,16 @@
 
 <body onload="outputNum()">
 
-<!--<ul id="menu" class="nav navbar-nav"><span id="menu-sign">&#9776;</span>
-    <span id="menu-puncts">
-        <li><a href="../alphabet">Алфавит</a></li>
-        <li><a href="index.html">Число</a></li>
-        <li><a href="random.html">Случ. число</a></li>
-    </span>
-</ul>-->
-
-<nav class="navbar navbar-inverse" style="position:absolute; z-index:100; padding:0;">
-  <div class="container-fluid">
-    <ul class="nav navbar-nav">
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="Меню">&#9776;
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Page 1-1</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
-        </ul>
-      </li>
-    </ul>
+<div class="dropdown open" style="position:absolute; z-index:100; margin:.8em; cursor:pointer;">
+    <span class="dropdown-toggle" data-toggle="dropdown">&#9776;</span>
+  <div class="dropdown-menu" style="font-size:.85em;">
+    <a class="dropdown-item" href="../alphabet">Алфавит</a>
+    <a class="dropdown-item" href="./">Числа</a>
+    <a class="dropdown-item" href="random.html">Случайные числа</a>
+    <!--<div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Separated link</a>-->
   </div>
-</nav>
+</div>
 
 <div id="min-max-input" class="form-row">
     <div class="col-3"></div>

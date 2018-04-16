@@ -16,13 +16,17 @@
 
 <body>
 
-<ul id="menu"><span id="menu-sign">&#9776;</span>
-    <span id="menu-puncts">
-        <li><a href="../alphabet">Алфавит</a></li>
-        <li><a href="index.html">Число</a></li>
-        <li><a href="random.html">Случ. число</a></li>
-    </span>
-</ul>
+<div class="dropdown open" style="position:absolute; z-index:100; margin:.8em; cursor:pointer;">
+    <span class="dropdown-toggle" data-toggle="dropdown">&#9776;</span>
+  <div class="dropdown-menu" style="font-size:.85em;">
+    <a class="dropdown-item" href="../alphabet">Алфавит</a>
+    <a class="dropdown-item" href="">Числа</a>
+    <a class="dropdown-item" href="random.html">Случайные числа</a>
+    <!--<div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Separated link</a>-->
+  </div>
+</div>
+
 <div id="min-max-input" class="form-row">
     <div class="col-4"></div>
     <div class="col text-right">
