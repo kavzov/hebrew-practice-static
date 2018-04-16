@@ -1,15 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Tinos');
 
-#min-max-input {
-    margin:0 auto;
+.dropdown-toggle::after {
+    display:none
 }
-#min-max-input input {
-    margin-top: 1em;
-}
+
 #answ-btn {
-    width: 5em;
-    font-size: 1.2em;
-    padding: .2em .4em;
+    width: 5.5em;
+    height:2.5em;
+    padding: .3em;
     margin: -.4em 0 -.4em;
 }
 #container {
@@ -22,27 +20,12 @@
     margin-top: .5em !important;
     text-align: center;
 }
-#menu {
-    z-index: 10;
-    position: absolute;
-    list-style-type: none;
-    padding: .8em 0 0 1em;
-    margin: 0;
+
+#min-max-input {
+    margin:0 auto;
 }
-#menu li {
-    font-size: .9em;
-    line-height: 2em;
-}
-#menu-sign {
-    display:inline-block;
-    cursor:pointer;
-    font-size:1.1em;
-}
-#menu-puncts {
-    display: none;
-    /*visibility: visible;*/
-    padding:0em .6em .3em 0em;
-    /*box-shadow: 1px 2px 4px rgba(0,0,0,0.5);*/
+#min-max-input input {
+    margin-top: 1em;
 }
 
 #num {
