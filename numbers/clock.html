@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Часы</title>
+    <meta name="viewport" content="width=device-width" />
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="../static/css/numbers.css">
+</head>
+<body onload="clockOutput();">
+<div class="dropdown open" style="position:absolute; z-index:100; margin:.7em; cursor:pointer;">
+    <span class="dropdown-toggle menu-sign" data-toggle="dropdown">&#9776;</span>
+  <div class="dropdown-menu" style="font-size:1.1em;">
+    <a class="dropdown-item" href="">Алфавит</a>
+    <a class="dropdown-item" href="../numbers">Числа</a>
+    <a class="dropdown-item" href="../numbers/random.html">Случайное число</a>
+    <!--<div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Separated link</a>-->
+  </div>
+</div>
+<div class="text-center" id="hrs-min"></div>
+
+<div id="container">
+    <div><input id="answer-btn" type="button" class="btn btn-primary"></div>
+    <div id="answer">
+        <div id="answer-translit"></div>
+        <div id="answer-hebrew"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../static/js/numbers_base.js"></script>
+<script>
+function getRandHours() {
+    return getRandInt(1, 13);
+}
+function getRandMinutes() {
+    var minutes = getRandInt(0, 60);
+    while (minutes % 5 !== 0) {
+        minutes = getRandInt(0, 60);
+    }
+    return minutes;
+}
+
+function dakot(lang) {
+    return (lang === 'rus') ? ' дакóт ' : ' דַקוֹת ';
+}
+function clockTranslate(hrs, min, lang) {
+    var str = '';
+    if (min < 40) {
+        str = translateNumber(hrs, lang);
+        if (min === 0) {
+            str += (lang === 'rus') ? ' бидию́к' : ' בדיוק';
+        }
+        else if (min <= 20) {
+            if (min === 15) {
+                str += (lang === 'rus') ? ' ва рэ́ва' : ' וַרֶבַע';
+            }
+            else {
+                str += getNumPrep(min, lang);
+                str += translateNumber(min, lang);
+                if (min !== 20) str += dakot(lang);
+            }
+        }
+        else {
+            if (min === 30) {
+                str += (lang === 'rus') ? ' ва хэ́ци' : ' וַחֵצִי';
+            }
+            else {
+                str += ' ' + translateNumber(min, lang) + dakot(lang);  /* make male minutes */
+            }
+        }
+    }
+    else {
+        if (min === 45) {
+            str = (lang === 'rus') ? 'рэ́ва ' : 'רֶבַע ';
+        } else {
+            str = translateNumber(60 - min, lang) + dakot(lang);
+        }
+        str += (lang === 'rus') ? 'лэ ' : 'לְ';
+        str += translateNumber(hrs+1, lang);
+    }
+//    console.log(str);
+    return str;
+}
+
+function clockOutput() {
+    var hrs = getRandHours();
+    var min = getRandMinutes();
+
+    var clockTranslit = clockTranslate(hrs, min, 'rus');
+    var clockHebrew = clockTranslate(hrs, min, 'heb');
+
+    if (min < 10) min = '0' + min;
+    var timeStr = hrs + ':' + min;
+
+    /* Show digital clock */
+    $('#hrs-min').html(timeStr);
+    /* show button title */
+    $('#answer-btn').val(btnTitleTransl);
+    /* disable green color of the button if there is */
+    if ($('#answer-btn').hasClass('btn-success')) $('#answer-btn').removeClass('btn-success');
+    /* Output answer */
+    $('#answer-translit').html(clockTranslit);
+    $('#answer-hebrew').html(clockHebrew);
+    /* hide whole answer */
+    $('#answer').hide();
+}
+
+function clockAnswerClick() {
+    if ($('#answer').css('display') === 'none') {
+        $('#answer').fadeIn(250);
+        $('#answer-btn').val(btnTitleMore);
+        $('#answer-btn').addClass('btn-success');
+    }
+    else {
+        clockOutput();
+    }
+}
+
+$('#answer-btn').on('click', function() {
+    clockAnswerClick();
+});
+</script>
+
+</body>
+</html>
