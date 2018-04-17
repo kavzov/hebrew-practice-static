@@ -26,13 +26,13 @@
 </div>
 <div class="text-center" id="hrs-min"></div>
 
-<div id="container">
-    <div><input id="answer-btn" type="button" class="btn btn-primary"></div>
-    <div id="answer">
+    <div class="text-center">
+        <input id="answer-btn" type="button" class="btn btn-primary answer-btn">
+    </div>
+    <div class="text-center" id="answer">
         <div id="answer-translit"></div>
         <div id="answer-hebrew"></div>
     </div>
-</div>
 
 <script type="text/javascript" src="../static/js/numbers_base.js"></script>
 <script>
@@ -112,19 +112,61 @@ function clockOutput() {
     $('#answer').hide();
 }
 
-function clockAnswerClick() {
-    if ($('#answer').css('display') === 'none') {
-        $('#answer').fadeIn(250);
-        $('#answer-btn').val(btnTitleMore);
-        $('#answer-btn').addClass('btn-success');
-    }
-    else {
+/** Colors (bootstrap buttons, alerts etc.) **/
+var redColor = 'red'; var greenColor = 'green'; var blueColor = 'blue'; var yellowColor = 'yellow';
+var aquaColor = 'aqua'; var darkGreyColor = 'darkGrey'; var greyColor = 'grey'; var lightGreyColor = 'lightGrey';
+
+function nodeIsDisplayed(node) {
+    /* Checks whether a node is displayed or not */
+    return $(node).css('display') !== 'none';
+}
+function answerIsHidden(answerNode) {
+    /* Check whether the answer is hidden */
+    return !nodeIsDisplayed(answerNode);
+}
+function showNode(node) {
+    /* Show not displayed node within 250 ms */
+    $(node).fadeIn(250);
+}
+function showAnswer(answerNode) {
+    /* Show hidden answer */
+    showNode(answerNode);
+}
+function setNodeVal(node, val) {
+    /* Set node attribute `value` to val */
+    $(node).val(val);
+}
+function setBtnTitle(btnNode, title) {
+    /* Specifies the button title */
+    setNodeVal(btnNode, title);
+}
+function setBtnColor(btnNode, color) {
+    /* Specifies the button color */
+    var btnColorClass = {
+        'red': 'btn-danger', 'green': 'btn-success', 'blue': 'btn-primary', 'yellow': 'btn-warning',
+        'aqua': 'btn-info', 'darkGrey': 'btn-dark', 'grey': 'btn-secondary', 'lightGrey': 'btn-light'
+    };
+    $(btnNode).addClass(btnColorClass[color]);
+}
+function getAnswerNode(btnNode) {
+    /* return answer node relative to the Translate button */
+    return btnNode.parentNode.nextElementSibling;
+}
+
+function showTranslOrTask(btnNode) {
+    /* Show task translation or a new task */
+    var answerNode = getAnswerNode(btnNode);
+    if (answerIsHidden(answerNode)) {
+        showAnswer(answerNode);
+        setBtnColor(btnNode, greenColor);
+        setBtnTitle(btnNode, btnTitleMore);
+    } else {
         clockOutput();
     }
 }
 
 $('#answer-btn').on('click', function() {
-    clockAnswerClick();
+    showTranslOrTask(this);
 });
 </script>
 
