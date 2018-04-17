@@ -10,7 +10,7 @@ $('#min-num, #max-num').on('change', function() {
 });
 
 /* answer button click */
-$('#answ-btn').on('click', function() { answerClick() });
+$('#answer-btn').on('click', function() { answerClick() });
 
 /* `Enter` key click on min or max fields makes the same answer button click */
 $('#min-num, #max-num').on('keypress', function(e) {

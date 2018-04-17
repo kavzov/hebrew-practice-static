@@ -124,8 +124,8 @@ function getRandInt(min, max) {
 function answerClick() {
     if ($('#num-answ').css('display') == 'none') {
         $('#num-answ').fadeIn(250);
-        $('#answ-btn').val(btnTitleMore);
-        $('#answ-btn').addClass('btn-success');
+        $('#answer-btn').val(btnTitleMore);
+        $('#answer-btn').addClass('btn-success');
     }
     else {
         outputNum();
@@ -149,9 +149,9 @@ function outputNum() {
     $('#num-answ-rus').html(translateNumber(randNum, 'rus'));
     $('#num-answ-heb').html(translateNumber(randNum, 'heb'));
     /* show button title */
-    $('#answ-btn').val(btnTitleTransl);
+    $('#answer-btn').val(btnTitleTransl);
     /* disable green color of the button if there is */
-    if ($('#answ-btn').hasClass('btn-success')) $('#answ-btn').removeClass('btn-success');
+    if ($('#answer-btn').hasClass('btn-success')) $('#answer-btn').removeClass('btn-success');
     /* hide answer */
     $('#num-answ').hide();
 }

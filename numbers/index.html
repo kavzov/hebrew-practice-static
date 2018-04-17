@@ -35,7 +35,7 @@
     <div class="col-4"></div>
 </div>
 <div id="container">
-    <div><input id="answ-btn" type="button" class="btn btn-primary" value="Перевод"></div>
+    <div><input id="answer-btn" type="button" class="btn btn-primary" value="Перевод"></div>
     <div id="num-answ">
         <div id="num-answ-rus"></div>
         <div id="num-answ-heb"></div>
@@ -66,7 +66,7 @@
         if (val < minNum) $('#input-num').val(minNum);
         if (val > maxNum) $('#input-num').val(maxNum);
     });
-    $('#answ-btn').on('click', function() { showNum(); });
+    $('#answer-btn').on('click', function() { showNum(); });
     $('#input-num').on('keypress', function(e) {
         if(e.which == 13) {
             showNum();

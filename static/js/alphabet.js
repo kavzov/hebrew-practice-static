@@ -21,9 +21,9 @@ function letterOutput() {
     $('#hebrew-letter').html(hebLetter);
     $('#answ-letter-rus').html(letter[rand]['ru']);
     /* show button title */
-    $('#answ-btn').val(btnTitleTransl);
+    $('#answer-btn').val(btnTitleTransl);
     /* disable green color of the button if there is */
-    if ($('#answ-btn').hasClass('btn-success')) $('#answ-btn').removeClass('btn-success');
+    if ($('#answer-btn').hasClass('btn-success')) $('#answer-btn').removeClass('btn-success');
     /* hide answer */
     $('#letter-answ').hide();
 }
@@ -31,8 +31,8 @@ function letterOutput() {
 function letterAnswerClick() {
     if ($('#letter-answ').css('display') == 'none') {
         $('#letter-answ').fadeIn(250);
-        $('#answ-btn').val(btnTitleMore);
-        $('#answ-btn').addClass('btn-success');
+        $('#answer-btn').val(btnTitleMore);
+        $('#answer-btn').addClass('btn-success');
     }
     else {
         letterOutput();
@@ -40,4 +40,4 @@ function letterAnswerClick() {
 }
 
 /* answer button click */
-$('#answ-btn').on('click', function() { letterAnswerClick() });
+$('#answer-btn').on('click', function() { letterAnswerClick() });
