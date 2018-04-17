@@ -4,7 +4,7 @@
     display:none
 }
 
-#answer-btn {
+#answer-btn, .translate-btn {
     font-size: 1.2em;
     width: 5.5em;
     height:2.3em;
@@ -21,10 +21,10 @@
     font-family: Tinos;
     font-size: 8em;
 }
-#hrs-min {
-    font-size: 5.5em;
+#digital-clock, .digital-clock {
+    font-size: 5em;
     line-height: 1.2em;
-    margin-bottom: .2em;
+    margin-bottom: .3em;
 }
 
 #input-num {
@@ -47,16 +47,16 @@
     margin-top: -.1em;
     font-size: 6.75em;
 }
-#num-answ, #letter-answ, #answer {
+#num-answ, #letter-answ, #answer, .answer {
     display: none;
     margin-top:1em;
     font-size: 1.5em;
 }
-#num-answ-heb, #answer-hebrew {
+#num-answ-heb, #answer-hebrew, .answer-hebrew {
     font-family: 'Tinos', serif;
     color: #359;
 }
-#num-answ-rus, #answ-letter-rus, #answer-translit {
+#num-answ-rus, #answ-letter-rus, #answer-translit, .answer-translit {
     font-family: serif;
     font-style: italic;
 }
