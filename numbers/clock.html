@@ -44,64 +44,9 @@
 </div>
 
 
+<!-- JavaScript -->
 <script type="text/javascript" src="../static/js/numbers_base.js"></script>
 <script>
-function getRandHours() {
-    /* Returns random hours */
-    return getRandInt(0, 12);
-}
-
-function getRandMinutes(multiple) {
-    /* Returns random minutes */
-    var minutes = getRandInt(0, 60);
-    // count with multiple if set
-    while (multiple && (minutes % multiple !== 0)) {
-        minutes = getRandInt(0, 60);
-    }
-    return minutes;
-}
-
-function dakot(lang) {
-    return (lang === 'rus') ? ' дакóт ' : ' דַקוֹת ';
-}
-function clockTranslate(hrs, min, lang) {
-    var str = '';
-    if (min < 40) {
-        str = translateNumber(hrs, lang);
-        if (min === 0) {
-            str += (lang === 'rus') ? ' бидью́к' : ' בדיוק';
-        }
-        else if (min <= 20) {
-            if (min === 15) {
-                str += (lang === 'rus') ? ' ва рэ́ва' : ' וַרֶבַע';
-            }
-            else {
-                str += getNumPrep(min, lang);
-                str += translateNumber(min, lang);
-                if (min !== 20) str += dakot(lang);
-            }
-        }
-        else {
-            if (min === 30) {
-                str += (lang === 'rus') ? ' ва хэ́ци' : ' וַחֵצִי';
-            }
-            else {
-                str += ' ' + translateNumber(min, lang) + dakot(lang);  /* make male minutes */
-            }
-        }
-    }
-    else {
-        if (min === 45) {
-            str = (lang === 'rus') ? 'рэ́ва ' : 'רֶבַע ';
-        } else {
-            str = translateNumber(60 - min, lang) + dakot(lang);
-        }
-        str += (lang === 'rus') ? 'лэ ' : 'לְ';
-        str += translateNumber(hrs + 1, lang);
-    }
-    return str;
-}
-
 /** Nodes **/
 var translateBtn = $('.translate-btn');
 var translationNode = getTranslationNode(translateBtn[0]);
@@ -116,12 +61,30 @@ var btnColorClass = {
 };
 
 /** Functions **/
+function getRandHours() {
+    /* Returns random hours */
+    return getRandInt(0, 12);
+}
+
+function getRandMinutes(multiple) {
+    /* Returns random minutes */
+    var minutes = getRandInt(0, 60);
+    // Counts with multiple if set
+    while (multiple && (minutes % multiple !== 0)) {
+        minutes = getRandInt(0, 60);
+    }
+    return minutes;
+}
+
+function dakot(lang) {
+    return (lang === 'rus') ? ' дакóт ' : ' דַקוֹת ';
+}
+
 function outputHTML(node, html) {
     $(node).html(html);
 }
 
-function showTask(taskStr) {
-    /* Show digital clock */
+function outputTask(taskStr) {
     outputHTML(taskNode, taskStr);
 }
 
@@ -179,19 +142,58 @@ function showTranslation(translationNode) {
     showNode(translationNode, 250);
 }
 
-function setNodeVal(node, val) {
+function setNodeValue(node, val) {
     /* Set node attribute "value" to `val` */
     $(node).val(val);
 }
 
 function setBtnTitle(btnNode, title) {
     /* Specifies the button title */
-    setNodeVal(btnNode, title);
+    setNodeValue(btnNode, title);
 }
 
 function getTranslationNode(btnNode) {
-    /* return translation node relative to the Translate button */
+    /* Returns translation node relative to the Translate button */
     return btnNode.parentNode.nextElementSibling;
+}
+
+function clockTranslate(hrs, min, lang) {
+    /* Translates `hrs` and `min` to `lang` and forms a clock string */
+    var str = '';
+    if (min < 40) {
+        str = translateNumber(hrs, lang);
+        if (min === 0) {
+            str += (lang === 'rus') ? ' бидью́к' : ' בדיוק';
+        }
+        else if (min <= 20) {
+            if (min === 15) {
+                str += (lang === 'rus') ? ' ва рэ́ва' : ' וַרֶבַע';
+            }
+            else {
+                str += getNumPrep(min, lang);
+                str += translateNumber(min, lang);
+                if (min !== 20) str += dakot(lang);
+            }
+        }
+        else {
+            if (min === 30) {
+                str += (lang === 'rus') ? ' ва хэ́ци' : ' וַחֵצִי';
+            }
+            else {
+                str += ' ' + translateNumber(min, lang) + dakot(lang);  /* make male minutes */
+            }
+        }
+    }
+    else {
+        if (min === 45) {
+            str = (lang === 'rus') ? 'рэ́ва ' : 'רֶבַע ';
+        } else {
+            str = translateNumber(60 - min, lang) + dakot(lang);
+        }
+        str += (lang === 'rus') ? 'лэ ' : 'לְ';
+        str += translateNumber(hrs + 1, lang);
+    }
+    return str;
 }
 
 function contentOutput() {
@@ -204,7 +206,7 @@ function contentOutput() {
     min = setMinutesLeadZero(min);  // minutes view with leading zero
     var timeStr = getClockStr(hrs, min);
 
-    showTask(timeStr);
+    outputTask(timeStr);
     setBtnTitle(translateBtn, btnTitleTransl);
     removeBtnColor(translateBtn, greenColor);  // disable green color of the button if it set before
     outputTranslation(translationNode, clockTranslit, clockHebrew);
