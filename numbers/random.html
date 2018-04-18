@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../static/css/numbers.css">
 </head>
 
-<body onload="outputNum()">
+<body onload="outputNum(1)">
 <div class="dropdown" style="position:absolute; z-index:100; margin:.7em; cursor:pointer;">
     <span class="dropdown-toggle menu-sign" data-toggle="dropdown">&#9776;</span>
   <div class="dropdown-menu" style="font-size:1.1em;">
@@ -40,6 +40,11 @@
 <div id="container">
     <div id="num"></div>
     <div><input id="answer-btn" type="button" class="btn btn-primary"></div>
+    <div class="container gender-select" style="margin-top:2em; font-size:.8em;">
+<label class="radio-inline"><input type="radio" name="optradio">Option 1</label>
+<label class="radio-inline"><input type="radio" name="optradio">Option 2</label>
+<label class="radio-inline"><input type="radio" name="optradio">Option 3</label>
+    </div>
     <div id="num-answ">
         <div id="num-answ-rus"></div>
         <div id="num-answ-heb"></div>
