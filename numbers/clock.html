@@ -14,93 +14,43 @@
     <link rel="stylesheet" href="../static/css/numbers.css">
 </head>
 
-<body onload="clockOutput();">
+<body onload="contentOutput();">
 
 <!-- Menu -->
 <div class="dropdown open" style="position:absolute; z-index:100; margin:.7em; cursor:pointer;">
     <span class="dropdown-toggle menu-sign" data-toggle="dropdown">&#9776;</span>
     <div class="dropdown-menu" style="font-size:1.1em;">
-        <a class="dropdown-item" href="">Алфавит</a>
-        <a class="dropdown-item" href="../numbers">Числа</a>
-        <a class="dropdown-item" href="../numbers/random.html">Случайное число</a>
+        <a class="dropdown-item" href="../alphabet">Алфавит</a>
+        <a class="dropdown-item" href="">Время</a>
+        <a class="dropdown-item" href="./">Числа</a>
+        <a class="dropdown-item" href="random.html">Случайное число</a>
         <!--<div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#">Separated link</a>-->
     </div>
 </div>
 
-<!-- Clock -->
-<div class="digital-clock text-center"></div>
+<!-- Task -->
+<div class="task"></div>
 
 <!-- Translate button -->
 <div class="text-center">
     <input class="translate-btn btn btn-primary" type="button">
 </div>
 
-<!-- Translation text -->
-<div class="answer text-center">
-    <div class="answer-translit"></div>
-    <div class="answer-hebrew"></div>
+<!-- Translation -->
+<div class="translation">
+    <div class="translit"></div>
+    <div class="hebrew"></div>
 </div>
 
+
+<!-- JavaScript -->
 <script type="text/javascript" src="../static/js/numbers_base.js"></script>
 <script>
-function getRandHours() {
-    return getRandInt(1, 12);
-}
-function getRandMinutes() {
-    var minutes = getRandInt(0, 60);
-    while (minutes % 5 !== 0) {
-        minutes = getRandInt(0, 60);
-    }
-    return minutes;
-}
-
-function dakot(lang) {
-    return (lang === 'rus') ? ' дакóт ' : ' דַקוֹת ';
-}
-function clockTranslate(hrs, min, lang) {
-    var str = '';
-    if (min < 40) {
-        str = translateNumber(hrs, lang);
-        if (min === 0) {
-            str += (lang === 'rus') ? ' бидию́к' : ' בדיוק';
-        }
-        else if (min <= 20) {
-            if (min === 15) {
-                str += (lang === 'rus') ? ' ва рэ́ва' : ' וַרֶבַע';
-            }
-            else {
-                str += getNumPrep(min, lang);
-                str += translateNumber(min, lang);
-                if (min !== 20) str += dakot(lang);
-            }
-        }
-        else {
-            if (min === 30) {
-                str += (lang === 'rus') ? ' ва хэ́ци' : ' וַחֵצִי';
-            }
-            else {
-                str += ' ' + translateNumber(min, lang) + dakot(lang);  /* make male minutes */
-            }
-        }
-    }
-    else {
-        if (min === 45) {
-            str = (lang === 'rus') ? 'рэ́ва ' : 'רֶבַע ';
-        } else {
-            str = translateNumber(60 - min, lang) + dakot(lang);
-        }
-        str += (lang === 'rus') ? 'лэ ' : 'לְ';
-        str += translateNumber(hrs+1, lang);
-    }
-    return str;
-}
-
-
 /** Nodes **/
-var translBtn = $('.translate-btn');
-var translText = getAnswerNode(translBtn[0]);
-var digitalClock = $('.digital-clock');
+var translateBtn = $('.translate-btn');
+var translationNode = getTranslationNode(translateBtn[0]);
+var taskNode = $('.task');
 
 /** Colors (bootstrap buttons, alerts etc.) **/
 var redColor = 'red'; var greenColor = 'green'; var blueColor = 'blue'; var yellowColor = 'yellow';
@@ -111,13 +61,31 @@ var btnColorClass = {
 };
 
 /** Functions **/
+function getRandHours() {
+    /* Returns random hours */
+    return getRandInt(0, 12);
+}
+
+function getRandMinutes(multiple) {
+    /* Returns random minutes */
+    var minutes = getRandInt(0, 60);
+    // Counts with multiple if set
+    while (multiple && (minutes % multiple !== 0)) {
+        minutes = getRandInt(0, 60);
+    }
+    return minutes;
+}
+
+function dakot(lang) {
+    return (lang === 'rus') ? ' дакóт ' : ' דַקוֹת ';
+}
+
 function outputHTML(node, html) {
     $(node).html(html);
 }
 
-function showClock(time) {
-    /* Show digital clock */
-    outputHTML(digitalClock, time)
+function outputTask(taskStr) {
+    outputHTML(taskNode, taskStr);
 }
 
 function outputTranslation(translNode, translit, hebrew) {
@@ -158,9 +126,9 @@ function nodeIsDisplayed(node) {
     return $(node).css('display') !== 'none';
 }
 
-function answerIsHidden(answerNode) {
-    /* Check whether the answer is hidden */
-    return !nodeIsDisplayed(answerNode);
+function translationIsHidden(translationNode) {
+    /* Check whether the translation is hidden */
+    return !nodeIsDisplayed(translationNode);
 }
 
 function showNode(node, time) {
@@ -169,57 +137,91 @@ function showNode(node, time) {
     $(node).fadeIn(time);
 }
 
-function showAnswer(answerNode) {
-    /* Show hidden answer */
-    showNode(answerNode, 250);
+function showTranslation(translationNode) {
+    /* Show hidden translation */
+    showNode(translationNode, 250);
 }
 
-function setNodeVal(node, val) {
+function setNodeValue(node, val) {
     /* Set node attribute "value" to `val` */
     $(node).val(val);
 }
 
 function setBtnTitle(btnNode, title) {
     /* Specifies the button title */
-    setNodeVal(btnNode, title);
+    setNodeValue(btnNode, title);
 }
 
-function getAnswerNode(btnNode) {
-    /* return answer node relative to the Translate button */
+function getTranslationNode(btnNode) {
+    /* Returns translation node relative to the Translate button */
     return btnNode.parentNode.nextElementSibling;
 }
 
-function clockOutput() {
-    /* Outputs digital clock, button title, translation (and hide it), ungreencolorize button (if there is) */
-    var hrs = getRandHours();
-    var min = getRandMinutes();
-    var clockTranslit = clockTranslate(hrs, min, 'rus');
-    var clockHebrew = clockTranslate(hrs, min, 'heb');
-    min = setMinutesLeadZero(min);  /* human minutes view with leading zero */
-    var timeStr = getClockStr(hrs, min);
-
-    showClock(timeStr);
-    setBtnTitle(translBtn, btnTitleTransl);
-    removeBtnColor(translBtn, greenColor);  /* disable green color of the button if it set before */
-    outputTranslation(translText, clockTranslit, clockHebrew);
-    hideTranslation(translText);
+function clockTranslate(hrs, min, lang) {
+    /* Translates `hrs` and `min` to `lang` and forms a clock string */
+    var str = '';
+    if (min < 40) {
+        str = translateNumber(hrs, lang);
+        if (min === 0) {
+            str += (lang === 'rus') ? ' бидью́к' : ' בדיוק';
+        } else if (min <= 20) {
+            if (min === 15) {
+                str += (lang === 'rus') ? ' ва рэ́ва' : ' וַרֶבַע';
+            } else {
+                str += getNumPrep(min, lang);
+                str += translateNumber(min, lang);
+                if (min !== 20) str += dakot(lang);
+            }
+        } else {
+            if (min === 30) {
+                str += (lang === 'rus') ? ' ва хэ́ци' : ' וַחֵצִי';
+            } else {
+                str += ' ' + translateNumber(min, lang) + dakot(lang);  /* make male minutes */
+            }
+        }
+    } else {
+        if (min === 45) {
+            str = (lang === 'rus') ? 'рэ́ва ' : 'רֶבַע ';
+        } else {
+            str = translateNumber(60 - min, lang) + dakot(lang);
+        }
+        str += (lang === 'rus') ? 'лэ ' : 'לְ';
+        str += translateNumber(hrs + 1, lang);
+    }
+    return str;
 }
 
-function showTranslOrTask(btnNode) {
-    /* Show task translation or a new task */
-    var answerNode = getAnswerNode(btnNode);
-    if (answerIsHidden(answerNode)) {
-        showAnswer(translText);
+function contentOutput() {
+    /* Outputs digital clock, button title, translation (and hide it), ungreencolorize button (if there is) */
+    var hrs = getRandHours();
+    var min = getRandMinutes(5);
+    var clockTranslit = clockTranslate(hrs, min, 'rus');
+    var clockHebrew = clockTranslate(hrs, min, 'heb');
+    hrs = (hrs) ? hrs : '00';       // '0' hrs -> '00'
+    min = setMinutesLeadZero(min);  // minutes view with leading zero
+    var timeStr = getClockStr(hrs, min);
+
+    outputTask(timeStr);
+    setBtnTitle(translateBtn, btnTitleTransl);
+    removeBtnColor(translateBtn, greenColor);  // disable green color of the button if it set before
+    outputTranslation(translationNode, clockTranslit, clockHebrew);
+    hideTranslation(translationNode);
+}
+
+function showTranslationOrNewTask(btnNode) {
+    /* Shows task translation or a new task */
+    if (translationIsHidden(translationNode)) {
+        showTranslation(translationNode);
         setBtnColor(btnNode, greenColor);
         setBtnTitle(btnNode, btnTitleMore);
     } else {
-        clockOutput();
+        contentOutput();
     }
 }
 
 /** Events handlers **/
 /* Click on Translate button */
-translBtn.on('click', function() { showTranslOrTask(this); });
+translateBtn.on('click', function() { showTranslationOrNewTask(this); });
 </script>
 
 </body>
