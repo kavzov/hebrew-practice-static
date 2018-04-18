@@ -87,6 +87,7 @@ function twoDigNum(num, lang, gender) {
 }
 
 function translateNumber(number, lang, gender) {
+    gender = gender ? 1 : 0;    // default female gender - index 1, male - index 0
     number = number.toString();
     var numberOrder = numOrder(number);
     var highOrderDigit = number[0];
@@ -135,8 +136,7 @@ function answerClick() {
     }
 }
 
-function outputNum(male) { console.log(male);
-    var gender = male ? 0 : 1; /* any `male` true value is male gender (index `0` in `ns`) */  console.log(gender);
+function outputNum(gender) {
     var min = parseInt($('#min-num').val());
     var max = parseInt($('#max-num').val()) + 1;
     /* generate random number */
