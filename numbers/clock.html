@@ -213,8 +213,8 @@ function contentOutput() {
     hideTranslation(translationNode);
 }
 
-function showTranslationOrTask(btnNode) {
-    /* Show task translation or a new task */
+function showTranslationOrNewTask(btnNode) {
+    /* Shows task translation or a new task */
     if (translationIsHidden(translationNode)) {
         showTranslation(translationNode);
         setBtnColor(btnNode, greenColor);
@@ -226,7 +226,7 @@ function showTranslationOrTask(btnNode) {
 
 /** Events handlers **/
 /* Click on Translate button */
-translateBtn.on('click', function() { showTranslationOrTask(this); });
+translateBtn.on('click', function() { showTranslationOrNewTask(this); });
 </script>
 
 </body>
