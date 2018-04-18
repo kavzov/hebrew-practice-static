@@ -164,27 +164,22 @@ function clockTranslate(hrs, min, lang) {
         str = translateNumber(hrs, lang);
         if (min === 0) {
             str += (lang === 'rus') ? ' бидью́к' : ' בדיוק';
-        }
-        else if (min <= 20) {
+        } else if (min <= 20) {
             if (min === 15) {
                 str += (lang === 'rus') ? ' ва рэ́ва' : ' וַרֶבַע';
-            }
-            else {
+            } else {
                 str += getNumPrep(min, lang);
                 str += translateNumber(min, lang);
                 if (min !== 20) str += dakot(lang);
             }
-        }
-        else {
+        } else {
             if (min === 30) {
                 str += (lang === 'rus') ? ' ва хэ́ци' : ' וַחֵצִי';
-            }
-            else {
+            } else {
                 str += ' ' + translateNumber(min, lang) + dakot(lang);  /* make male minutes */
             }
         }
-    }
-    else {
+    } else {
         if (min === 45) {
             str = (lang === 'rus') ? 'рэ́ва ' : 'רֶבַע ';
         } else {
