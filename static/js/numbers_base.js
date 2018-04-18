@@ -10,8 +10,11 @@ $('#max-num').val(maxFormNum);
 $('#max-num').attr('max', maxNum);
 
 var ns = [
-    null,
-    [
+    [   /* male (index `0`) */
+        {'rus': 'э́фес', 'heb': 'אֶפֶס'}, {'rus': 'эха́д', 'heb': 'אֶחַד'}, {'rus': 'шна́йм', 'heb': 'שְׁנַּיִים'}, {'rus': 'шлоша́', 'heb': 'שְׁלוֹשָׁה'}, {'rus': 'арбаа́', 'heb': 'אַרְבַּעָה'}, {'rus': 'хамиша́', 'heb': 'חָמִשָה'}, {'rus': 'шиша́', 'heb': 'שִׁשָהׁ'}, {'rus': 'шива́', 'heb': 'שִׁבַעָה'}, {'rus': 'шммона́', 'heb': 'שְׁמוֹנָה'}, {'rus': 'тиша́', 'heb': 'תִּשַׁעָה'},
+        {'rus': 'асара́', 'heb': 'עֲשָׂרָה'}, {'rus': 'аха́д аса́р́', 'heb': 'אַחַד עָשָׂר'}, {'rus': 'шнэ́йм аса́р́', 'heb': 'שנֵים עָשָׂר'}, {'rus': 'шлоша́ аса́р', 'heb': 'שְׁלוֹשָׁה עָשָׂר'}, {'rus': 'арбаа́ аса́р', 'heb': 'אַרְבַּעָה עָשָׂר'}, {'rus': 'хамиша́ аса́р', 'heb': 'חָמִשָה עָשָׂר'}, {'rus': 'шиша́ аса́р́', 'heb': 'שִׁשָה עָשָׂר'}, {'rus': 'шива́ аса́р', 'heb': 'שִׁבַעָה עָשָׂר'}, {'rus': 'шмона́ аса́р', 'heb': 'שְׁמוֹנָה עָשָׂר'}, {'rus': 'тиша́ аса́р', 'heb': 'תִּשַׁעָה עָשָׂר'}
+    ],
+    [   /* female (index `1`) */
         {'rus': 'э́фес', 'heb': 'אֶפֶס'}, {'rus': 'аха́т', 'heb': 'אַחַת'}, {'rus': 'шта́им', 'heb': 'שְׁתַּיִים'}, {'rus': 'шало́ш', 'heb': 'שָׁלוֹשׁ'}, {'rus': 'арба́', 'heb': 'אַרְבַּע'}, {'rus': 'хамéш', 'heb': 'חָמֵשׁ'}, {'rus': 'шеш', 'heb': 'שֵׁשׁ'}, {'rus': 'шéва', 'heb': 'שֶׁבַע'}, {'rus': 'шмонé', 'heb': 'שְׁמוֹנֶה'}, {'rus': 'тéша', 'heb': 'תֵּשַׁע'},
         {'rus': 'э́сер', 'heb': 'עֶשֶׂר'}, {'rus': 'аха́т эсре́', 'heb': 'אַחַת עֶשׂרֵה'}, {'rus': 'ште́йм эсре́', 'heb': 'שְׁתֵיים עֶשׂרֵה'}, {'rus': 'шлош эсре́', 'heb': 'שְׁלוֹשׁ עֶשׂרֵה'}, {'rus': 'арба́ эсрé', 'heb': 'אַרְבַּע עֶשׂרֵה'}, {'rus': 'хаме́ш эсре́', 'heb': 'חֲמֵשׁ עֶשׂרֵה'}, {'rus': 'шеш эсре́', 'heb': 'שֵׁשׁ עֶשׂרֵה'}, {'rus': 'шва эсре́', 'heb': 'שְׁבַע עֶשׂרֵה'}, {'rus': 'шмонé эсре́', 'heb': 'שְׁמוֹנֶה עֶשׂרֵה'}, {'rus': 'тша эсре́', 'heb': 'תְּשַׁע עֶשׂרֵה'}
     ],
@@ -59,40 +62,40 @@ function getNumPrep(dig, lang) {
     return (lang === 'rus') ? ' вэ ' : ' ו';
 }
 
-function getDigit(dig, lang) {
-    return ns[1][dig][lang];
+function getDigit(dig, lang, gender) {
+    return ns[gender][dig][lang];
 }
 
 function getDigNum(order, digit, lang) {
     return ns[order][digit][lang];
 }
 
-function twoDigNum(num, lang) {
+function twoDigNum(num, lang, gender) {
     var str = '';
     num = num.toString();
     var numbOrder = numOrder(num);
     var highOrderDigit = num[0];
     if (num < 20) {
-        str = getDigit(num, lang);
+        str = getDigit(num, lang, gender);
     }
     else {
         str = ns[numbOrder][highOrderDigit][lang];
         if (num % 10 !== 0)
-            str += getDigPrep(num[1], lang) + getDigit(num[1], lang);
+            str += getDigPrep(num[1], lang) + getDigit(num[1], lang, gender);
     }
     return str;
 }
 
-function translateNumber(number, lang) {
+function translateNumber(number, lang, gender) {
     number = number.toString();
     var numberOrder = numOrder(number);
     var highOrderDigit = number[0];
 
     if (numberOrder === 1) {
-        return getDigit(number, lang);
+        return getDigit(number, lang, gender);
     }
     if (numberOrder === 2) {
-        return twoDigNum(number, lang);
+        return twoDigNum(number, lang, gender);
     }
     if (numberOrder >= 3) {
         var str = getDigNum(numberOrder, highOrderDigit, lang);
@@ -102,7 +105,7 @@ function translateNumber(number, lang) {
             if (numMultiple(number, numberOrder-2) || number < 20) {
                 str += getNumPrep(number.toString()[0], lang);
             } else { str += ' '; }
-            return str + translateNumber(number, lang);
+            return str + translateNumber(number, lang, gender);
         }
         return str;
     }
@@ -132,7 +135,8 @@ function answerClick() {
     }
 }
 
-function outputNum() {
+function outputNum(male) { console.log(male);
+    var gender = male ? 0 : 1; /* any `male` true value is male gender (index `0` in `ns`) */  console.log(gender);
     var min = parseInt($('#min-num').val());
     var max = parseInt($('#max-num').val()) + 1;
     /* generate random number */
@@ -146,8 +150,8 @@ function outputNum() {
     }
     /* output the number and answer */
     $('#num').html(randNum);
-    $('#num-answ-rus').html(translateNumber(randNum, 'rus'));
-    $('#num-answ-heb').html(translateNumber(randNum, 'heb'));
+    $('#num-answ-rus').html(translateNumber(randNum, 'rus', gender));
+    $('#num-answ-heb').html(translateNumber(randNum, 'heb', gender));
     /* show button title */
     $('#answer-btn').val(btnTitleTransl);
     /* disable green color of the button if there is */
