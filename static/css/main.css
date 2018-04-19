@@ -7,26 +7,30 @@
     line-height: 1.2em;
     margin-bottom: .3em;
 }
+
+/* Translate button */
 #translate-btn {
     text-align: center;
 }
 #translate-btn>input {
     font-size: 1.2em;
     width: 5.5em;
-    height:2.3em;
+    height: 2.3em;
     padding: .3em;
     margin: -3.5em 0 -3em;
 }
+
+/* Translate */
 #translation {
     text-align: center;
     margin-top: 1em;
     font-size: 1.5em;
 }
-#translit {
+.translit {
     font-family: serif;
     font-style: italic;
 }
-#hebrew {
+.hebrew {
     font-family: 'Tinos', serif;
     font-size: .9em;
     color: #359;
