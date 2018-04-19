@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Tinos');
+
+/* Task */
+#task {
+    text-align: center;
+    font-size: 5em;
+    line-height: 1.2em;
+    margin-bottom: .3em;
+}
+#translate-btn {
+    text-align: center;
+}
+#translate-btn>input {
+    font-size: 1.2em;
+    width: 5.5em;
+    height:2.3em;
+    padding: .3em;
+    margin: -3.5em 0 -3em;
+}
+#translation {
+    text-align: center;
+    margin-top: 1em;
+    font-size: 1.5em;
+}
+#translit {
+    font-family: serif;
+    font-style: italic;
+}
+#hebrew {
+    font-family: 'Tinos', serif;
+    font-size: .9em;
+    color: #359;
+}
+
+/* Menu */
+.dropdown-toggle::after {
+    display:none
+}
+.menu-sign {
+    font-size: 1.2em;
+}
+
+/*@media (max-width: 600px) {}*/
