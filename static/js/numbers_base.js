@@ -1,15 +1,15 @@
-var btnTitleTransl = 'Перевод';
-var btnTitleMore = 'Ещё';
+let btnTitleTranslate = 'Перевод';
+let btnTitleMore = 'Ещё';
 
-var minNum = 0;
-var maxNum = 19999;
-var maxFormNum = 1000;
+let minNum = 0;
+let maxNum = 19999;
+let maxFormNum = 1000;
 $('#min-num').val(minNum);
 $('#min-num').attr('min', minNum);
 $('#max-num').val(maxFormNum);
 $('#max-num').attr('max', maxNum);
 
-var ns = [
+let ns = [
     [   /* male (index 0) */
         {'rus': 'э́фес', 'heb': 'אֶפֶס'}, {'rus': 'эха́д', 'heb': 'אֶחַד'}, {'rus': 'шна́йм', 'heb': 'שְׁנַּיִים'}, {'rus': 'шлоша́', 'heb': 'שְׁלוֹשָׁה'}, {'rus': 'арбаа́', 'heb': 'אַרְבַּעָה'}, {'rus': 'хамиша́', 'heb': 'חָמִשָה'}, {'rus': 'шиша́', 'heb': 'שִׁשָהׁ'}, {'rus': 'шива́', 'heb': 'שִׁבַעָה'}, {'rus': 'шмона́', 'heb': 'שְׁמוֹנָה'}, {'rus': 'тиша́', 'heb': 'תִּשַׁעָה'},
         {'rus': 'асара́', 'heb': 'עֲשָׂרָה'}, {'rus': 'аха́д аса́р́', 'heb': 'אַחַד עָשָׂר'}, {'rus': 'шнэ́йм аса́р́', 'heb': 'שנֵים עָשָׂר'}, {'rus': 'шлоша́ аса́р', 'heb': 'שְׁלוֹשָׁה עָשָׂר'}, {'rus': 'арбаа́ аса́р', 'heb': 'אַרְבַּעָה עָשָׂר'}, {'rus': 'хамиша́ аса́р', 'heb': 'חָמִשָה עָשָׂר'}, {'rus': 'шиша́ аса́р́', 'heb': 'שִׁשָה עָשָׂר'}, {'rus': 'шива́ аса́р', 'heb': 'שִׁבַעָה עָשָׂר'}, {'rus': 'шмона́ аса́р', 'heb': 'שְׁמוֹנָה עָשָׂר'}, {'rus': 'тиша́ аса́р', 'heb': 'תִּשַׁעָה עָשָׂר'}
@@ -46,7 +46,7 @@ function numMultiple(num, order) {
 
 function getDigPrep(dig, lang) {
     /* digit preposition */
-    var digPref = {
+    let digPref = {
         '1': ' вэ ', '2': ' у ',  '3': ' вэ ',  '4': ' вэ ',  '5': ' вэ ',   '6': ' ва ',   '7': ' ва ',   '8': ' у ',   '9': ' ва ',
     };
     // return (lang === 'rus') ? digPref[dig] : ' ו';
@@ -55,7 +55,7 @@ function getDigPrep(dig, lang) {
 
 /* temp for 2> digit preposition */
 function getNumPrep(dig, lang) {
-    var digPrep = {
+    let digPrep = {
         '1': ' вэ ', '2': ' у ',  '3': ' вэ ',  '4': ' вэ ',  '5': ' вэ ',   '6': ' ва ',   '7': ' ва ',   '8': ' у ',   '9': ' ва '
     };
     // return (lang === 'rus') ? digPrep[dig] : ' ו';
@@ -71,10 +71,10 @@ function getDigNum(order, digit, lang) {
 }
 
 function twoDigNum(num, lang, gender) {
-    var str = '';
+    let str = '';
     num = num.toString();
-    var numbOrder = numOrder(num);
-    var highOrderDigit = num[0];
+    let numbOrder = numOrder(num);
+    let highOrderDigit = num[0];
     if (num < 20) {
         str = getDigit(num, lang, gender);
     }
@@ -92,8 +92,8 @@ function translateNumber(number, lang, gender) {
         gender = 1;
     }
     number = number.toString();
-    var numberOrder = numOrder(number);
-    var highOrderDigit = number[0];
+    let numberOrder = numOrder(number);
+    let highOrderDigit = number[0];
 
     if (numberOrder === 1) {
         return getDigit(number, lang, gender);
@@ -102,7 +102,7 @@ function translateNumber(number, lang, gender) {
         return twoDigNum(number, lang, gender);
     }
     if (numberOrder >= 3) {
-        var str = getDigNum(numberOrder, highOrderDigit, lang);
+        let str = getDigNum(numberOrder, highOrderDigit, lang);
         number -= highOrderDigit * Math.pow(10, numberOrder-1);
         if (number) {
             /* check for preparation */
@@ -116,8 +116,8 @@ function translateNumber(number, lang, gender) {
 }
 
 function numsTable() {
-    var str = '<table class="nums-table">';
-    for (var i=0; i<999; i++) {
+    let str = '<table class="nums-table">';
+    for (let i=0; i<999; i++) {
         str += '<tr><td>' + getNumTransl(i, 'heb') + '</td><td>' + getNumTransl(i, 'rus') + '</td><td>' + i + '</td></tr>';
     }
     str += '</table>';
@@ -140,13 +140,13 @@ function answerClick() {
 }
 
 function outputNum(gender) {
-    var min = parseInt($('#min-num').val());
-    var max = parseInt($('#max-num').val()) + 1;
+    let min = parseInt($('#min-num').val());
+    let max = parseInt($('#max-num').val()) + 1;
     /* generate random number */
     /* get last number */
-    var lastNum = $('#num').text();
+    let lastNum = $('#num').text();
     /* generate new */
-    var randNum = getRandInt(min, max);
+    let randNum = getRandInt(min, max);
     /* if new == last, generate till other new */
     while (lastNum == randNum) {
         randNum = getRandInt(min, max);
@@ -156,7 +156,7 @@ function outputNum(gender) {
     $('#num-answ-rus').html(translateNumber(randNum, 'rus', gender));
     $('#num-answ-heb').html(translateNumber(randNum, 'heb', gender));
     /* show button title */
-    $('#answer-btn').val(btnTitleTransl);
+    $('#answer-btn').val(btnTitleTranslate);
     /* disable green color of the button if there is */
     if ($('#answer-btn').hasClass('btn-success')) $('#answer-btn').removeClass('btn-success');
     /* hide answer */

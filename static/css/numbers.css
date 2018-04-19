@@ -4,24 +4,24 @@
     display:none
 }
 
-#answer-btn, .translate-btn {
+#answer-btn, #translate-btn>input {
     font-size: 1.2em;
     width: 5.5em;
     height:2.3em;
     padding: .3em;
     margin: -3.5em 0 -3em;
 }
-#container {
+#container, #translate-btn {
     text-align: center;
 }
 
 #hebrew-letter {
     line-height:1em;
     margin-bottom:.2em;
-    font-family: Tinos;
+    font-family: Tinos, serif;
     font-size: 8em;
 }
-.task {
+#task {
     text-align: center;
     font-size: 5em;
     line-height: 1.2em;
@@ -48,7 +48,7 @@
     margin-top: -.1em;
     font-size: 6.75em;
 }
-#num-answ, #letter-answ, #answer, .translation {
+#num-answ, #letter-answ, #answer, #translation {
     text-align: center;
     margin-top: 1em;
     font-size: 1.5em;

@@ -47,32 +47,32 @@
 <script type="text/javascript" src="../static/js/numbers_base.js"></script>
 <script type="text/javascript" src="../static/js/index.js"></script>
 <script>
-    function showNum () {
-        var inputField = $('#input-num');
-        /* If empty field, set `0` */
-        inputField.val( inputField.val() === "" ? 0 : inputField.val() );
-        var num = inputField.val();
-        // remove lead `0`
-        if (num !== '0' && num[0] === '0') {
-            num = num.replace(/^0+/, '');
-            inputField.val(num);
-        }
-
-        $('#num-answ-rus').html(translateNumber(num, 'rus'));
-        $('#num-answ-heb').html(translateNumber(num, 'heb'));
-        $('#num-answ').show();
+function showNum () {
+    var inputField = $('#input-num');
+    /* If empty field, set `0` */
+    inputField.val( inputField.val() === "" ? 0 : inputField.val() );
+    var num = inputField.val();
+    // remove lead `0`
+    if (num !== '0' && num[0] === '0') {
+        num = num.replace(/^0+/, '');
+        inputField.val(num);
     }
-    $('#input-num').on('change', function(e) {
-        var val = $('#input-num').val();
-        if (val < minNum) $('#input-num').val(minNum);
-        if (val > maxNum) $('#input-num').val(maxNum);
-    });
-    $('#answer-btn').on('click', function() { showNum(); });
-    $('#input-num').on('keypress', function(e) {
-        if(e.which == 13) {
-            showNum();
-        }
-    });
+
+    $('#num-answ-rus').html(translateNumber(num, 'rus'));
+    $('#num-answ-heb').html(translateNumber(num, 'heb'));
+    $('#num-answ').show();
+}
+$('#input-num').on('change', function(e) {
+    var val = $('#input-num').val();
+    if (val < minNum) $('#input-num').val(minNum);
+    if (val > maxNum) $('#input-num').val(maxNum);
+});
+$('#answer-btn').on('click', function() { showNum(); });
+$('#input-num').on('keypress', function(e) {
+    if(e.which == 13) {
+        showNum();
+    }
+});
 </script>
 </body>
 </html>

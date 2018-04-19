@@ -21,7 +21,7 @@ function letterOutput() {
     $('#hebrew-letter').html(hebLetter);
     $('#answ-letter-rus').html(letter[rand]['ru']);
     /* show button title */
-    $('#answer-btn').val(btnTitleTransl);
+    $('#answer-btn').val(btnTitleTranslate);
     /* disable green color of the button if there is */
     if ($('#answer-btn').hasClass('btn-success')) $('#answer-btn').removeClass('btn-success');
     /* hide answer */
