@@ -87,10 +87,11 @@ function twoDigNum(num, lang, gender) {
 }
 
 function translateNumber(number, lang, gender) {
-    console.log('g before - ' + gender);
-    // gender = (gender === undefined) ? 1 : 0;    // default female gender - index 1, male - index 0
-    if (gender === undefined || gender === 1) gender = 1;
-    number = number.toString(); console.log(gender);
+    if (gender === undefined) {
+        // default female gender - index 1 of numbers array (male - 0)
+        gender = 1;
+    }
+    number = number.toString();
     var numberOrder = numOrder(number);
     var highOrderDigit = number[0];
 

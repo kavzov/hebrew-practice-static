@@ -62,17 +62,16 @@ var btnColorClass = {
 
 /** Functions **/
 function getRandHours() {
-    /* Returns random hours */
     return getRandInt(0, 12);
 }
 
 function getRandMinutes(multiple) {
-    /* Returns random minutes */
     var minutes = getRandInt(0, 60);
-    // Counts with multiple if set
-    while (multiple && (minutes % multiple !== 0)) {
-        minutes = getRandInt(0, 60);
-    }
+    // Counts with multiple if it set
+    if (multiple)
+        while (minutes % multiple !== 0) {
+            minutes = getRandInt(0, 60);
+        }
     return minutes;
 }
 
@@ -96,7 +95,6 @@ function outputTranslation(translNode, translit, hebrew) {
 }
 
 function setBtnColor(btnNode, color) {
-    /* Specifies the button color */
     $(btnNode).addClass(btnColorClass[color]);
 }
 
@@ -109,15 +107,15 @@ function hideNode(node, time) {
     $(node).hide(time);
 }
 
-function hideTranslation(translNode) {
-    hideNode(translNode);
+function hideTranslation(translationNode) {
+    hideNode(translationNode);
 }
 
 function setMinutesLeadZero(min) {
     return (min < 10) ? '0' + min : min;
 }
 
-function getClockStr(hrs, min) {
+function formTimeTranslateString(hrs, min) {
     return hrs + ':' + min;
 }
 
@@ -157,8 +155,8 @@ function getTranslationNode(btnNode) {
     return btnNode.parentNode.nextElementSibling;
 }
 
-function clockTranslate(hrs, min, lang) {
-    /* Translates `hrs` and `min` to `lang` and forms a clock string */
+function translateTime(hrs, min, lang) {
+    /* Translates `hrs` and `min` to `lang` and forms a string */
     var str = '';
     if (min < 40) {
         str = translateNumber(hrs, lang);
@@ -192,19 +190,19 @@ function clockTranslate(hrs, min, lang) {
 }
 
 function contentOutput() {
-    /* Outputs digital clock, button title, translation (and hide it), ungreencolorize button (if there is) */
+    /* Outputs digital time, button title, translation (and hide it), ungreencolorize button (if there is) */
     var hrs = getRandHours();
     var min = getRandMinutes(5);
-    var clockTranslit = clockTranslate(hrs, min, 'rus');
-    var clockHebrew = clockTranslate(hrs, min, 'heb');
+    var timeTranslit = translateTime(hrs, min, 'rus');
+    var timeHebrew = translateTime(hrs, min, 'heb');
     hrs = (hrs) ? hrs : '00';       // '0' hrs -> '00'
     min = setMinutesLeadZero(min);  // minutes view with leading zero
-    var timeStr = getClockStr(hrs, min);
+    var timeStr = formTimeTranslateString(hrs, min);
 
     outputTask(timeStr);
     setBtnTitle(translateBtn, btnTitleTransl);
     removeBtnColor(translateBtn, greenColor);  // disable green color of the button if it set before
-    outputTranslation(translationNode, clockTranslit, clockHebrew);
+    outputTranslation(translationNode, timeTranslit, timeHebrew);
     hideTranslation(translationNode);
 }
 
