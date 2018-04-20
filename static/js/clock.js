@@ -82,5 +82,8 @@ function outputContent() {
 }
 
 /** Events handlers **/
+/* Page load */
 page.ready(outputContent());
 
+/* Click on Translate button */
+translateBtn.on('click', function() { showTranslationOrNewTask(); });
