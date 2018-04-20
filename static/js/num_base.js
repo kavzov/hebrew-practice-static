@@ -45,8 +45,8 @@ function getDigPrep(dig, lang) {
     let digPref = {
         '1': ' вэ ', '2': ' у ',  '3': ' вэ ',  '4': ' вэ ',  '5': ' вэ ',   '6': ' ва ',   '7': ' ва ',   '8': ' у ',   '9': ' ва ',
     };
-    // return (lang === 'rus') ? digPref[dig] : ' ו';
-    return (lang === 'rus') ? ' вэ ' : ' ו';
+    return (lang === 'rus') ? digPref[dig] : ' ו';
+    // return (lang === 'rus') ? ' вэ ' : ' ו';
 }
 
 /* temp for 2> digit preposition */
@@ -102,9 +102,13 @@ function translateNumber(number, lang, gender) {
         number -= highOrderDigit * Math.pow(10, numberOrder-1);
         if (number) {
             /* check for preparation */
-            if (numMultiple(number, numberOrder-2) || number < 20) {
+            if (numMultiple(number, numberOrder-2) || number > 9 && number < 20) {
                 str += getNumPrep(number.toString()[0], lang);
-            } else { str += ' '; }
+            } else if (number > 0 && number < 10) {
+                str += getDigPrep(number, lang)
+            } else {
+                str += ' ';
+            }
             return str + translateNumber(number, lang, gender);
         }
         return str;

@@ -1,59 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <title>Случайные числа</title>
     <meta charset="UTF-8">
+    <title>Случайные числа</title>
     <meta name="viewport" content="width=device-width" />
-    <!-- jquery -->
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- bootstrap -->
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- css -->
-    <link rel="stylesheet" href="../static/css/numbers.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/random.css">
 </head>
 
-<body onload="outputNum()">
-<div class="dropdown" style="position:absolute; z-index:100; margin:.7em; cursor:pointer;">
+<body>
+<!-- Menu -->
+<div class="dropdown open" style="position:absolute; z-index:100; margin:.7em; cursor:pointer;">
     <span class="dropdown-toggle menu-sign" data-toggle="dropdown">&#9776;</span>
-  <div class="dropdown-menu" style="font-size:1.1em;">
-    <a class="dropdown-item" href="../alphabet">Алфавит</a>
-    <a class="dropdown-item" href="clock.html">Время</a>
-    <a class="dropdown-item" href="./">Числа</a>
-    <a class="dropdown-item" href="">Случайное число</a>
-    <!--<div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Separated link</a>-->
-  </div>
+    <div class="dropdown-menu" style="font-size:1.1em;">
+        <a class="dropdown-item" href="../alphabet">Алфавит</a>
+        <a class="dropdown-item" href="./clock.html">Время</a>
+        <a class="dropdown-item" href="./">Числа</a>
+        <a class="dropdown-item" href="">Случайное число</a>
+        <!--<div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Separated link</a>-->
+    </div>
 </div>
 
+<!-- Min max limits fields -->
 <div id="min-max-input" class="form-row">
     <div class="col-3"></div>
     <div class="col">
-        <input id="min-num" class="form-control" type="number" value="0">
+        <input id="min-num" class="form-control" type="number">
     </div>
     <div class="col text-right">
-        <input id="max-num" class="form-control" type="number" value="1000">
-        <div style="font-size:.8em; color:#777; margin-bottom: -1em;">&gt;19999</div>
+        <input id="max-num" class="form-control" type="number">
+        <div id="max-num-limit-tip"></div>
     </div>
     <div class="col-3"></div>
 </div>
-<div id="container">
-    <div id="num"></div>
-    <div><input id="answer-btn" type="button" class="btn btn-primary"></div>
-    <div class="container gender-select" style="margin-top:2em; font-size:.8em;">
-        <label class="radio-inline"><input type="radio" name="optradio" checked> Жен</label>&ensp;
-        <label class="radio-inline"><input type="radio" name="optradio"> Муж</label>
-    </div>
-    <div id="num-answ">
-        <div id="num-answ-rus"></div>
-        <div id="num-answ-heb"></div>
-    </div>
-</div>
-<div id="nums-list"></div>
 
-<!-- js -->
-<script type="text/javascript" src="../static/js/numbers_base.js"></script>
+<!-- Task -->
+<div id="task"></div>
+
+<!-- Translate button -->
+<div id="translate-btn">
+    <input class="btn btn-primary" type="button">
+</div>
+
+<!-- Translation -->
+<div id="translation">
+    <div class="translit"></div>
+    <div class="hebrew"></div>
+</div>
+
+<!-- Custom JavaScript -->
+<script type="text/javascript" src="../static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/num_base.js"></script>
 <script type="text/javascript" src="../static/js/random.js"></script>
+
 </body>
 </html>

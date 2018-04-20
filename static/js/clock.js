@@ -81,3 +81,6 @@ function outputContent() {
     hideTranslation();
 }
 
+/** Events handlers **/
+page.ready(outputContent());
+

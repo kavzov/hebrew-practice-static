@@ -78,6 +78,9 @@ function showTranslation() {
     showNode(translationArea, 250);
 }
 
+function setNodeAttr(node, name, val) {
+    $(node).attr(name, val);
+}
 function setNodeValue(node, val) {
     $(node).val(val);
 }
@@ -99,6 +102,6 @@ function showTranslationOrNewTask() {
 
 /** Events handlers **/
 /* Page load */
-page.ready(outputContent());
+// page.ready(outputContent());
 /* Click on Translate button */
 translateBtn.on('click', function() { showTranslationOrNewTask(); });
