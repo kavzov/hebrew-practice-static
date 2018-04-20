@@ -11,68 +11,52 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- css -->
-    <link rel="stylesheet" href="../static/css/numbers.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/num_main.css">
+    <link rel="stylesheet" href="../static/css/num_custom.css">
 </head>
 
 <body>
 <div class="dropdown open" style="position:absolute; z-index:100; margin:.7em; cursor:pointer;">
     <span class="dropdown-toggle menu-sign" data-toggle="dropdown">&#9776;</span>
-  <div class="dropdown-menu" style="font-size:1.1em;">
-    <a class="dropdown-item" href="../alphabet">Алфавит</a>
-    <a class="dropdown-item" href="clock.html">Время</a>
-    <a class="dropdown-item" href="">Числа</a>
-    <a class="dropdown-item" href="random.html">Случайное число</a>
-    <!--<div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Separated link</a>-->
-  </div>
+    <div class="dropdown-menu" style="font-size:1.1em;">
+        <a class="dropdown-item" href="../alphabet">Алфавит</a>
+        <a class="dropdown-item" href="clock.html">Время</a>
+        <a class="dropdown-item" href="">Числа</a>
+        <a class="dropdown-item" href="random.html">Случайное число</a>
+        <!--<div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Separated link</a>-->
+    </div>
 </div>
 
-<div id="min-max-input" class="form-row">
+<!-- Custom number field -->
+<div id="custom-num-input" class="form-row">
     <div class="col-4"></div>
     <div class="col text-right">
-        <input id="input-num" class="form-control" type="number" value="" autofocus>
-        <div style="font-size:.8em; color:#777; margin-bottom:2em;">&gt;19999</div>
+        <input id="custom-num" class="form-control" type="number" autofocus>
+        <div id="max-num-limit-tip"></div>
     </div>
     <div class="col-4"></div>
 </div>
-<div id="container">
-    <div><input id="answer-btn" type="button" class="btn btn-primary" value="Перевод"></div>
-    <div id="num-answ">
-        <div id="num-answ-rus"></div>
-        <div id="num-answ-heb"></div>
-    </div>
+
+<!-- Task -->
+<div id="task"></div>
+
+<!-- Translate button -->
+<div id="translate-btn">
+    <input class="btn btn-primary" type="button">
 </div>
 
-<!-- js -->
-<script type="text/javascript" src="../static/js/numbers_base.js"></script>
-<script type="text/javascript" src="../static/js/index.js"></script>
-<script>
-function showNum () {
-    var inputField = $('#input-num');
-    /* If empty field, set `0` */
-    inputField.val( inputField.val() === "" ? 0 : inputField.val() );
-    var num = inputField.val();
-    // remove lead `0`
-    if (num !== '0' && num[0] === '0') {
-        num = num.replace(/^0+/, '');
-        inputField.val(num);
-    }
+<!-- Translation -->
+<div id="translation">
+    <div class="translit"></div>
+    <div class="hebrew"></div>
+</div>
 
-    $('#num-answ-rus').html(translateNumber(num, 'rus'));
-    $('#num-answ-heb').html(translateNumber(num, 'heb'));
-    $('#num-answ').show();
-}
-$('#input-num').on('change', function(e) {
-    var val = $('#input-num').val();
-    if (val < minNum) $('#input-num').val(minNum);
-    if (val > maxNum) $('#input-num').val(maxNum);
-});
-$('#answer-btn').on('click', function() { showNum(); });
-$('#input-num').on('keypress', function(e) {
-    if(e.which == 13) {
-        showNum();
-    }
-});
-</script>
+<!-- JavaScript -->
+<script type="text/javascript" src="../static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/num_main.js"></script>
+<script type="text/javascript" src="../static/js/num_custom.js"></script>
+
 </body>
 </html>

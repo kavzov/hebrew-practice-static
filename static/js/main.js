@@ -91,17 +91,11 @@ function setBtnTitle(btnNode, title) {
 
 function showTranslationOrNewTask() {
     /* Shows task translation or a new task */
-    if (translationIsHidden(translationArea)) {
-        showTranslation(translationArea);
+    if (translationIsHidden()) {
+        showTranslation();
         setBtnColor(translateBtn, greenColor);
         setBtnTitle(translateBtn, btnTitleMore);
     } else {
         outputContent();
     }
 }
-
-/** Events handlers **/
-/* Page load */
-// page.ready(outputContent());
-/* Click on Translate button */
-translateBtn.on('click', function() { showTranslationOrNewTask(); });

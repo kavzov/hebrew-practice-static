@@ -1,6 +1,4 @@
 /** Vars **/
-let minNumVal = 0;
-let maxNumVal = 9999;
 let maxNumValInForm = 1000;
 
 
@@ -44,7 +42,7 @@ page.ready(function() {
     setNodeValue(maxNum, maxNumValInForm);
     setNodeAttr(minNum, 'min', minNumVal);
     setNodeAttr(maxNum, 'max', maxNumVal);
-    $('#max-num-limit-tip').text(minNumVal + ' > ' + maxNumVal);
+    $(maxNumLimitTip).html(minNumVal + '&nbsp;&gt;&nbsp;' + maxNumVal);
     outputContent();
 });
 
@@ -63,9 +61,14 @@ $(maxNum).on('keyup', function() {
     }
 });
 
-/* `Enter` key click on min or max fields makes the same answer button click */
+/* Click on Translate button */
+translateBtn.on('click', function() { showTranslationOrNewTask(); });
+
+/* `Enter` key click on min or max fields does the same the Translate button click does */
 function checkEnterOnMinMax(e) {
-    if (e.which === 13) showTranslationOrNewTask();
+    if (e.which === 13) {
+        showTranslationOrNewTask();
+    }
 }
-$(maxNum).on('keypress', function(e) { checkEnterOnMinMax(e); });
-$(minNum).on('keypress', function(e) { checkEnterOnMinMax(e); });
+$(minNum + ', ' + maxNum).on('keypress', function(e) { checkEnterOnMinMax(e); });
+// $(minNum).on('keypress', function(e) { checkEnterOnMinMax(e); });
