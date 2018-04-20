@@ -105,5 +105,5 @@ function showTranslationOrNewTask() {
 }
 
 $('#menu-sign').on('click', function() {
-    $('#menu-items').toggle(500);
+    $('#menu-items').toggle(200);
 });
