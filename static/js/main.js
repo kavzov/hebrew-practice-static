@@ -103,3 +103,7 @@ function showTranslationOrNewTask() {
         outputContent();
     }
 }
+
+$('#menu-sign').on('click', function() {
+    $('#menu-items').toggle(500);
+});

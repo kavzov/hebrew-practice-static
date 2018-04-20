@@ -45,8 +45,18 @@ body {
 .dropdown-toggle::after {
     display: none;
 }
-.menu-sign {
+#menu {
+    position:absolute;
+    z-index:100;
+    margin:.7em;
+    cursor:pointer;
+}
+#menu-sign {
     font-size: 1.2em;
+}
+#menu-items {
+    font-size: 1.1em;
+
 }
 
 /*@media (max-width: 600px) {}*/
