@@ -39,13 +39,13 @@ page.ready(function() {
 translateBtn.on('click', function() { outputContent(); });
 
 $(customNum).on('change', function(e) {
-    var val = $(customNum).val();
+    let val = $(customNum).val();
     if (val < minNumVal) $(customNum).val(minNumVal);
     if (val > maxNumVal) $(customNum).val(maxNumVal);
 });
 
 $(customNum).on('keypress', function(e) {
-    if(e.which == 13) {
+    if(e.which === 13) {
         outputContent();
     }
 });
