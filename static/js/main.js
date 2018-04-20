@@ -27,7 +27,7 @@ function isTranslitLang(lang) {
 }
 
 function outputHTML(node, html) {
-    $(node).html(html);
+    $(node).hide().html(html).fadeIn(500);
 }
 
 function outputTask(taskStr) {
