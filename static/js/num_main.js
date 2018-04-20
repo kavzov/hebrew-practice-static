@@ -35,10 +35,6 @@ let maxNumLimitTip =  '#max-num-limit-tip';
 
 
 /** Functions **/
-function getRandInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + parseInt(min);
-}
-
 function numOrder(n) {
     return n.toString().length;
 }

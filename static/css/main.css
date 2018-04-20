@@ -43,7 +43,7 @@ body {
 
 /* Menu */
 .dropdown-toggle::after {
-    display:none
+    display: none;
 }
 .menu-sign {
     font-size: 1.2em;

@@ -22,6 +22,10 @@ let btnColorClass = {
 
 
 /** Functions **/
+function getRandInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + parseInt(min);
+}
+
 function isTranslitLang(lang) {
     return lang === translitLang;
 }
