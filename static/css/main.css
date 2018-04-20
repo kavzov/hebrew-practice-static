@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Tinos');
 
+body {
+    width: 100%;
+    overflow-x: hidden;  /* hide horizontal scroll after `form-row` bootstrap class */
+}
+
 /* Task */
 #task {
     text-align: center;
