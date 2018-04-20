@@ -11,32 +11,41 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- css -->
-    <link rel="stylesheet" href="../static/css/numbers.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/alphabet.css">
 </head>
 
-<body onload="letterOutput();">
+<body>
+<!-- Menu -->
 <div class="dropdown open" style="position:absolute; z-index:100; margin:.7em; cursor:pointer;">
     <span class="dropdown-toggle menu-sign" data-toggle="dropdown">&#9776;</span>
-  <div class="dropdown-menu" style="font-size:1.1em;">
-    <a class="dropdown-item" href="">Алфавит</a>
-    <a class="dropdown-item" href="../numbers/clock.html">Время</a>
-    <a class="dropdown-item" href="../numbers">Числа</a>
-    <a class="dropdown-item" href="../numbers/random.html">Случайное число</a>
-    <!--<div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Separated link</a>-->
-  </div>
+    <div class="dropdown-menu" style="font-size:1.1em;">
+        <a class="dropdown-item" href="">Алфавит</a>
+        <a class="dropdown-item" href="../numbers/clock.html">Время</a>
+        <a class="dropdown-item" href="../numbers">Числа</a>
+        <a class="dropdown-item" href="../numbers/random.html">Случайное число</a>
+        <!--<div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Separated link</a>-->
+    </div>
 </div>
 <div class="text-center" id="hebrew-letter"></div>
 
-<div id="container">
-    <div><input id="answer-btn" type="button" class="btn btn-primary"></div>
-    <div id="letter-answ">
-        <div id="answ-letter-rus"></div>
-        <!--<div id="num-answ-heb"></div>-->
-    </div>
+<!-- Task -->
+<div id="task"></div>
+
+<!-- Translate button -->
+<div id="translate-btn">
+    <input class="btn btn-primary" type="button">
 </div>
 
-<script type="text/javascript" src="../static/js/numbers_base.js"></script>
+<!-- Translation -->
+<div id="translation">
+    <div class="translit"></div>
+    <div class="hebrew"></div>
+</div>
+
+<!-- JavaScript -->
+<script type="text/javascript" src="../static/js/main.js"></script>
 <script type="text/javascript" src="../static/js/alphabet.js"></script>
 </body>
 </html>
