@@ -53,12 +53,14 @@ function translateTime(hrs, min, lang) {
             }
         }
     } else {
-        if (min === 45) {
+        if (min === 40) {
+            str = translateNumber(60 - min, lang);
+        } else if (min === 45) {
             str = (lang === 'rus') ? 'рэ́ва ' : 'רֶבַע ';
         } else {
             str = translateNumber(60 - min, lang) + dakot(lang);
         }
-        str += (lang === 'rus') ? 'лэ ' : 'לְ';
+        str += (lang === 'rus') ? ' лэ ' : ' לְ';
         str += translateNumber(hrs + 1, lang);
     }
     return str;
