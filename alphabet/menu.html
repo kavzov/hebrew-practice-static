@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Алфавит</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Drawer (http://git.blivesta.com/drawer/) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/css/drawer.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/js/drawer.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/alphabet.css">
+</head>
+
+<body class="drawer drawer--left">
+<!-- Menu -->
+  <header role="banner">
+    <button type="button" class="drawer-toggle drawer-hamburger">
+      <span class="sr-only">toggle navigation</span>
+      <span class="drawer-hamburger-icon"></span>
+    </button>
+    <nav class="drawer-nav" role="navigation">
+      <ul class="drawer-menu">
+<!--         <li><a class="drawer-brand" href="#">Brand</a></li> -->
+        <li><a class="drawer-menu-item" href="./">Алфавит</a></li>
+        <li><a class="drawer-menu-item" href="../numbers/clock.html">Время</a></li>
+        <li><a class="drawer-menu-item" href="../numbers">Числа</a></li>
+        <li><a class="drawer-menu-item" href="../numbers/random.html">Случайные числа</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main role="main">
+
+<!-- Task -->
+<div id="task"></div>
+
+<!-- Translate button -->
+<div id="translate-btn">
+    <input class="btn btn-primary" type="button">
+</div>
+
+<!-- Translation -->
+<div id="translation">
+    <div class="translit"></div>
+    <div class="hebrew"></div>
+</div>
+
+<!-- JavaScript -->
+<script type="text/javascript" src="../static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/alphabet.js"></script>
+
+<script>
+$(document).ready(function() {
+  $('.drawer').drawer();
+});
+</script>
+
+  </main>
+</body>
+</html>
