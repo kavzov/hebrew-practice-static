@@ -1,2 +1,2 @@
 # hebrew-practice-web
-Website with exercises to improve hebrew skills
+Static site. It is No longer developing.
