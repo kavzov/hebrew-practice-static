@@ -1,2 +1,2 @@
 # hebrew-practice-web
-Static site. It is No longer developing.
+Static site. It is not being developed anymore.
